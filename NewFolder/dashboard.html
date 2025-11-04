@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Admin - User Management</title>
+<style>
+  :root{
+    --blue-700:#0b5fa5;
+    --blue-600:#1565c0;
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --muted:#6b7280;
+    --accent:#0ea5ff;
+    --round:12px;
+    --sidebar-w:260px;
+  }
+  *{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+  body{margin:0;background:var(--bg);color:#111;}
+  .app{display:flex;min-height:100vh;}
+  /* Sidebar */
+  .sidebar{
+    width:var(--sidebar-w);
+    background:linear-gradient(180deg,var(--blue-700),var(--blue-600));
+    color:#fff;padding:20px 16px;
+    display:flex;flex-direction:column;gap:18px;
+  }
+  .brand{font-weight:700;font-size:18px;margin-bottom:6px}
+  .nav{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+  .nav a{display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px;color:rgba(255,255,255,0.95);text-decoration:none}
+  .nav a:hover{background:rgba(255,255,255,0.06)}
+  .nav .section{font-size:13px;opacity:0.95}
+  .sidebar .footer{margin-top:auto;font-size:13px;opacity:0.9;padding:8px 0;}
+  /* Main */
+  .main{flex:1;display:flex;flex-direction:column;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:white;border-bottom:1px solid #e6eef7;}
+  .left-top{display:flex;gap:12px;align-items:center}
+  .hamb{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:transparent;border:1px solid #e1eefb}
+  .title{font-weight:700}
+  .subtitle{color:var(--muted);font-size:13px}
+  .user-actions{display:flex;gap:14px;align-items:center}
+  .btn{background:var(--blue-600);color:white;padding:8px 14px;border-radius:10px;border:none;cursor:pointer}
+  .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#2b90ff,#79c2ff);display:inline-flex;align-items:center;justify-content:center;color:white;font-weight:600}
+  /* Content */
+  .content{padding:22px 28px;flex:1}
+  .hero{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:16px}
+  .hero-left h1{margin:0;font-size:22px}
+  .hero-left p{margin:6px 0 0;color:var(--muted)}
+  /* Cards grid */
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 20px}
+  .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 16px rgba(17,24,39,0.04);border:1px solid #f0f4f8}
+  .card .num{font-weight:700;font-size:20px}
+  .card .label{font-size:13px;color:var(--muted);margin-top:6px}
+  /* Directory area */
+  .panel{background:var(--card);padding:16px;border-radius:12px;border:1px solid #e6eef7}
+  .panel .controls{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+  .search{flex:1;display:flex;gap:8px;align-items:center;background:#f8fbff;padding:8px;border-radius:8px;border:1px solid #eef6ff}
+  .search input{border:0;background:transparent;outline:none;width:100%}
+  table{width:100%;border-collapse:collapse;margin-top:6px}
+  th,td{padding:12px 10px;text-align:left;border-top:1px solid #f3f6fb}
+  th{font-weight:600;color:var(--muted);font-size:13px}
+  .empty{color:var(--muted);padding:40px;text-align:center}
+  /* Responsive */
+  @media (max-width:900px){
+    :root{--sidebar-w:72px}
+    .sidebar{width:72px;padding:14px; display:none}
+    .brand{display:none}
+    .nav a span{display:none}
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .hero{flex-direction:column;align-items:flex-start}
+  }
+  @media (max-width:520px){
+    .cards{grid-template-columns:1fr}
+    .topbar{padding:12px}
+    .content{padding:12px}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" aria-label="Sidebar">
+    <div class="brand">Jawaab Management System</div>
+    <nav class="nav" aria-label="Main">
+      <a href="#"><span style="width:18px">🏠</span><span class="section">Dashboard</span></a>
+      <a href="dashboard.html"><span style="width:18px">👥</span><span class="section">Users</span></a>
+      <a href="#"><span style="width:18px">📁</span><span class="section">Projects</span></a>
+      <a href="#"><span style="width:18px">💰</span><span class="section">Finance</span></a>
+      <a href="#"><span style="width:18px">📊</span><span class="section">Reports</span></a>
+      <a href="documents.html" target="_blank"><span style="width:18px">📄</span><span class="section">Documents</span></a>
+      <a href="#"><span style="width:18px">💬</span><span class="section">Communication</span></a>
+      <a href="#"><span style="width:18px">⚙️</span><span class="section">Settings</span></a>
+    </nav>
+    <div class="footer">© 2025</div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="left-top">
+        <div class="hamb">≡</div>
+        <div>
+          <div class="title">Welcome Back , Admin</div>
+          <div class="subtitle">Saturday September 20 , 2025</div>
+        </div>
+      </div>
+      <div class="user-actions">
+        <button class="btn">+ Add User</button>
+        <div class="avatar">K</div>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="hero">
+        <div class="hero-left">
+          <h1>User Management</h1>
+          <p>Manage NGO, Staff, partners, and beneficiaries</p>
+        </div>
+      </div>
+
+      <div class="cards" role="list">
+        <div class="card" role="listitem"><div class="num">0</div><div class="label">Total Users</div></div>
+        <div class="card" role="listitem"><div class="num">0</div><div class="label">Admin</div></div>
+        <div class="card" role="listitem"><div class="num">0</div><div class="label">Staff</div></div>
+        <div class="card" role="listitem"><div class="num">0</div><div class="label">Partners</div></div>
+      </div>
+
+      <div class="panel" aria-labelledby="dir">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <div id="dir" style="font-weight:700">Users Directory</div>
+          <div style="color:var(--muted);font-size:13px">All Roles</div>
+        </div>
+
+        <div class="controls">
+          <div class="search" role="search">
+            <span style="opacity:.6">🔍</span>
+            <input placeholder="Search users..." aria-label="Search users" />
+          </div>
+          <button class="btn" style="background:transparent;color:var(--blue-600);border:1px solid #e6f2ff">Filter</button>
+        </div>
+
+        <table aria-label="Users table">
+          <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Department</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td colspan="6" class="empty">No users yet — this is a static demo</td></tr>
+          </tbody>
+        </table>
+
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+ :root{
+    --blue-700:#0b5fa5;
+    --blue-600:#1565c0;
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --muted:#6b7280;
+    --accent:#0ea5ff;
+    --round:12px;
+    --sidebar-w:260px;
+  }
+*{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+body{margin:0; background:var(--bg);color:#111; }
+.app{display: flex; min-height: 100vh;}
+.sidebar{
+    width:var(--sidebar-w);
+    background:linear-gradient(180deg,var(--blue-700),var(--blue-600));
+    color:#fff;padding:20px 16px;
+    display: flex; flex-direction: column; gap: 18px;
+}
+    .brand{font-weight:700;font-size:18px;margin-bottom:6px}
+    .nav{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+    .nav a{display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px;color:rgba(255,255,255,0.95);text-decoration:none}
+    .nav a:hover{background:rgba(255,255,255,0.06)}
+    .nav .section{font-size:13px;opacity:0.95}
+    .sidebar .footer{margin-top:auto;font-size:13px;opacity:0.9;padding:8px 0;}
+
+    /*Main*/
+    .main{flex:1;display:flex;flex-direction:column;}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:white;border-bottom:1px solid #e6eef7;}
+    .left-top{display:flex;gap:12px;align-items:center}
+    .hamb{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:transparent;border:1px solid #e1eefb}
+    .title{font-weight:700}
+    .subtitle{color:var(--muted);font-size:13px}
+    .user-actions{display:flex;gap:14px;align-items:center}
+    .btn{background:var(--blue-600);color:white;padding:8px 14px;border-radius:10px;border:none;cursor:pointer}
+    .ghost{background:transparent;border:1px solid #eef6ff;color:var(--blue-600);padding:8px 12px;border-radius:8px;cursor:pointer}
+    .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#2b90ff,#79c2ff);display:inline-flex;align-items:center;justify-content:center;color:white;font-weight:600}
+
+    /*content*/
+    .content{padding:22px 28px;flex:1}
+    .hero{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:16px}
+    .hero-left h1{margin:0;font-size:22px}
+    .hero-left p{margin:6px 0 0;color:var(--muted)}
+    /*cards grid*/
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 20px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 16px rgba(17,24,39,0.04);border:1px solid #808083}
+    .card .num{font-weight:700;font-size:18px}
+    .card .label{font-size:13px;color:var(--muted);margin-top:6px}
+    /*Documents panel*/
+    .panel{background:var(--card);padding:16px;border-radius:12px;border:1px solid #e6eef7}
+    .panel .controls{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+    .search{flex:1;display:flex;gap:8px;align-items:center;background:#f8fbff;padding:8px;border-radius:8px;border:1px solid #eef6ff}
+    .search input{border:0;background:transparent;outline:none;width:100%}
+    .select{padding:8px 10px;border-radius:8px;border:1px solid #eef6ff;background:#fff}
+    .upload-btn{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:10px;background:var(--blue-600);color:#fff;border:none;cursor:pointer}
+    .library{margin-top:12px;border-radius:10px;border:1px dashed #e9eef6;background:linear-gradient(180deg, rgba(14,165,255,0.03), transparent);min-height:150px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+    .library .empty{padding:28px;text-align:center;max-width:560px}
+
+    .small{font-size:13px;color:var(--muted)}
+    /*Responsive*/
+    @media (max-width:900px){
+    :root{--sidebar-w:72px}
+    .sidebar{width:72px;padding:14px;display: none;}
+    .brand{display:none}
+    .nav a span:nth-child(2){display:none}
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .hero{flex-direction:column;align-items:flex-start}
+  }
+  @media (max-width:520px){
+    .cards{grid-template-columns:1fr}
+    .topbar{padding:12px}
+    .content{padding:12px}
+  }
+</style>
+</head>
+    
+
+<body>
+    <div class="app">
+  <aside class="sidebar" aria-label="Sidebar">
+    <div class="brand">Jawaab Management System</div>
+    <nav class="nav" aria-label="Main">
+      <a href="dashboard.html"><span style="width:18px">🏠</span><span class="section">Dashboard</span></a>
+      <a href="dashboard.html"><span style="width:18px">👥</span><span class="section">Users</span></a>
+      <a href="projects.html"><span style="width:18px">📁</span><span class="section">Projects</span></a>
+      <a href="finance.html"><span style="width:18px">💰</span><span class="section">Finance</span></a>
+      <a href="reports.html"><span style="width:18px">📊</span><span class="section">Reports</span></a>
+      <a href="documents.html" class="active"><span style="width:18px">📄</span><span class="section">Documents</span></a>
+      <a href="communication.html"><span style="width:18px">💬</span><span class="section">Communication</span></a>
+      <a href="settings.html"><span style="width:18px">⚙️</span><span class="section">Settings</span></a>
+    </nav>
+    <div class="footer">© 2025</div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="left-top">
+        <div class="hamb">≡</div>
+        <div>
+          <div class="title">Welcome back, Ken Chege</div>
+          <div class="subtitle">Monday, September 22, 2025</div>
+        </div>
+      </div>
+      <div class="user-actions">
+        <!-- Upload button shows how an icon + label might look -->
+        <button class="upload-btn" title="Upload Document">
+          <!-- small inline SVG for upload icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 10l5-5 5 5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 5v12" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Upload Document
+        </button>
+        <div class="avatar" title="Ken Chege">K</div>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="hero">
+        <div class="hero-left">
+          <h1>Document Management</h1>
+          <p class="small">Upload, organize, and manage organizational documents</p>
+        </div>
+      </div>
+
+      <div class="cards" role="list">
+        <div class="card" role="listitem"><div class="num">0</div><div class="label">Total Documents</div></div>
+        <div class="card" role="listitem"><div class="num">0</div><div class="label">Policies</div></div>
+        <div class="card" role="listitem"><div class="num">0</div><div class="label">Financial Reports</div></div>
+        <div class="card" role="listitem"><div class="num">0</div><div class="label">Project Documents</div></div>
+      </div>
+
+      <div class="panel" aria-labelledby="lib">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div id="lib" style="font-weight:700">Documents Library</div>
+          <div class="small">0 of 0 documents</div>
+        </div>
+
+        <div class="controls">
+          <div class="search" role="search">
+            <span style="opacity:.6">🔍</span>
+            <input placeholder="Search documents..." aria-label="Search documents" />
+          </div>
+
+          <select class="select" aria-label="Category filter">
+            <option>All Categories</option>
+            <option>Policies</option>
+            <option>Financial Reports</option>
+            <option>Project Documents</option>
+          </select>
+        </div>
+
+        <div class="library" role="region" aria-live="polite">
+          <div class="empty">
+            <div style="font-size:18px;font-weight:600;margin-bottom:8px">No documents uploaded yet.</div>
+            <div class="small">Upload your first document using the "Upload Document" button above.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
